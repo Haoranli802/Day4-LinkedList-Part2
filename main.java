@@ -39,3 +39,46 @@ class Solution {
     }
 }
 // Time: O(N) Space: O(1)
+
+// LeetCode 160
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int lenA = 0;
+        int lenB = 0;
+        ListNode head1 = headA;
+        ListNode head2 = headB;
+        while(head1 != null){
+            lenA ++;
+            head1 = head1.next;
+        }
+        while(head2 != null){
+            lenB ++;
+            head2 = head2.next;
+        }
+        int count = 0;
+        if(lenA >= lenB){
+            head1 = headA;
+            head2 = headB;
+            count = lenA - lenB;
+        }
+        else{
+            head1 = headB;
+            head2 = headA;
+            count = lenB - lenA;
+        }
+        while(head1 != null){
+            if(count > 0){
+                head1 = head1.next;
+                count --;
+            }
+            else{
+                if(head1 == head2) return head1;
+                head1 = head1.next;
+                head2 = head2.next;
+            }
+        }
+        return null;
+    }
+}
+
+//Time: O(N) Space: O(1)
