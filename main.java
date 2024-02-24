@@ -82,3 +82,27 @@ public class Solution {
 }
 
 //Time: O(N) Space: O(1)
+
+// LeetCode 142
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        if(head == null) return null;
+        ListNode slow = head, fast = head;
+        while(fast.next != null && fast.next.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                ListNode start = head;
+                ListNode intersect = slow;
+                while(start != intersect){
+                    start = start.next;
+                    intersect = intersect.next;
+                }
+                return start;
+            }
+        }
+        return null;
+    }
+}
+
+//Time: O(N) Space: O(1)
